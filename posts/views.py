@@ -1,3 +1,33 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
+from django.utils import timezone
 
-# Create your views here.
+from .models import Post
+from .forms import BlogPostForm
+
+
+def get_posts(request):
+    """Returns a list of Posts that were published prior to 'now'"""
+    posts = Post.objects.filter(published_date__lte=timezone.now())\
+        .order_by('-published_date')
+    return render(request, "blog_posts.html", {'posts': posts})
+
+
+def post_detail(request, pk):
+    """Returns a single Post object based on ID or returns 404 if not found"""
+    post = get_object_or_404(Post, pk=pk)
+    post.views += 1
+    post.save()
+    return render(request, 'post_detail.html', {'post': post})
+
+
+def create_or_edit_post(request, pk=None):
+    """Create or edit a post depending if the Post ID is null or not"""
+    post = get_object_or_404(Post, pk=pk) if pk else None
+    if request.method == "POST":
+        form = BlogPostForm(request.POST, request.FILES, instance=post)
+        if form.is_valid():
+            post = form.save()
+            return redirect(post_detail, post.pk)
+    else:
+        form = BlogPostForm(instance=post)
+    return render(request, 'blog_post_form.html', {'form': form})
