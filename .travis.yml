@@ -1,0 +1,10 @@
+language: python
+python:
+- '3.8'
+install: pip install -r requirements.txt
+script:
+- python manage.py test
+env:
+  global:
+    SECRET_KEY:
+      secure: GoWDEGBoVQnjayjrpslmB8BVK2ukRZVrzRgK5logi45160+7jRxl/LmDo4hyX5sr8W7UsgCG6cQUD3tiQcpk/h2fJ5r3FwMvk+WyC9GdN9do/OmcQvxPrPbeEtbZ/sRtMIHMXXHRUNDPopjscIgROl2fVhlK3cE/q1wIJFZJVhzdI6UT1ah5ZNJwz9Ky7FWVAYlrrvZEGtfTdkA6wzS6cp3VwrA7F5YAk+/vrdVD40pj1LVPz+kxwFb9nlV78iMigenxaOthRFBQocReAoA+C4FNgzAL/+NfcUaFfHb5BUA3JBGJyMfcOVP6tlLuI49f4EFw6mU4YRyMsU4x3rmxyomV7QDJYnfq+sX8TGpaG/LTBL+diwuZSNPDEb0GTEt6D85K++soxJ+qZyiU37+PJb5UlMyAuya+GPCHQiTgJ9dPa6FBomu1bAqA9hZZPSP8UC3wBI31Rc/3Xj59dSGBJPIde7l9rdcuMqLOswl2dJGXXMZXPplzefwFNLUia/vi/mJpU+qCO539uRcAEGV72RyKLG8sezHOYUC7IAEN+AVdOVGHRVxrQwejDsMDsJbSA3IdSxgtl787p6JUGv/CXKExCH+Rk8BBSwxo1r+l7mJt8uIgoZW6MbQSuIoSDreyudHwZ+MqGtiVgOIWzc+ckqQ4OJCVvq+QAqzzRfUs9L0=
